@@ -1,22 +1,5 @@
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealElements = document.querySelectorAll("[data-reveal]");
-const disclaimer = document.querySelector(".disclaimer");
-const disclaimerAccept = document.getElementById("disclaimer-accept");
-
-if (disclaimer && disclaimerAccept) {
-  document.body.classList.add("disclaimer-open");
-  const closeDisclaimer = () => {
-    disclaimer.classList.add("is-hidden");
-    document.body.classList.remove("disclaimer-open");
-  };
-  disclaimerAccept.addEventListener("click", closeDisclaimer);
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeDisclaimer();
-    }
-  });
-}
-
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -209,3 +192,66 @@ if (timeline) {
 
   start();
 }
+
+const modelTriggers = document.querySelectorAll("[data-model-open]");
+const modelModals = document.querySelectorAll(".model-modal");
+let activeModal = null;
+let lastFocused = null;
+
+const openModal = (modal, trigger) => {
+  if (!modal) {
+    return;
+  }
+  if (activeModal && activeModal !== modal) {
+    activeModal.classList.remove("is-open");
+    activeModal.setAttribute("aria-hidden", "true");
+  }
+  lastFocused = trigger || document.activeElement;
+  activeModal = modal;
+  activeModal.classList.add("is-open");
+  activeModal.removeAttribute("aria-hidden");
+  document.body.classList.add("model-open");
+  const closeButton = activeModal.querySelector(".model-close");
+  if (closeButton) {
+    closeButton.focus();
+  }
+};
+
+const closeModal = () => {
+  if (!activeModal) {
+    return;
+  }
+  activeModal.classList.remove("is-open");
+  activeModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("model-open");
+  const toFocus = lastFocused;
+  activeModal = null;
+  lastFocused = null;
+  if (toFocus && typeof toFocus.focus === "function") {
+    toFocus.focus();
+  }
+};
+
+if (modelTriggers.length > 0) {
+  modelTriggers.forEach((trigger) => {
+    const modalId = trigger.getAttribute("data-model-open");
+    const modal = modalId ? document.getElementById(modalId) : null;
+    if (!modal) {
+      return;
+    }
+    trigger.addEventListener("click", () => openModal(modal, trigger));
+  });
+}
+
+modelModals.forEach((modal) => {
+  const closeTargets = modal.querySelectorAll("[data-model-close]");
+  closeTargets.forEach((target) => {
+    target.addEventListener("click", closeModal);
+  });
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && activeModal) {
+    closeModal();
+  }
+});

@@ -15,20 +15,6 @@
   <body>
     <div class="ash-layer" aria-hidden="true"></div>
     <div class="ash-layer ash-layer--slow" aria-hidden="true"></div>
-    <div class="disclaimer" id="disclaimer" role="dialog" aria-modal="true" aria-labelledby="disclaimer-title">
-      <div class="disclaimer-card">
-        <h2 class="disclaimer-title" id="disclaimer-title">Дисклеймер</h2>
-        <p class="disclaimer-text">
-          Данный проект разработан в рамках конкурса «ТехноИнтеллект» с целью демонстрации технических
-          компетенций обучающегося, а также в рамках задач патриотического воспитания.
-        </p>
-        <p class="disclaimer-text">
-          После завершения районного этапа конкурса данное информационное окно будет удалено.
-        </p>
-        <p class="disclaimer-note">Для продолжения работы с проектом нажмите «Далее».</p>
-        <button class="disclaimer-btn" type="button" id="disclaimer-accept">Далее</button>
-      </div>
-    </div>
     <nav class="site-nav" aria-label="Навигация по разделам">
       <div class="container nav-inner">
         <div class="nav-logo">Афган 79-89</div>
@@ -72,8 +58,8 @@
         <div class="container" data-reveal>
           <h2 class="section-title">Контекст</h2>
           <p class="section-subtitle">
-            Кратко и нейтрально: международная обстановка, решения руководства СССР, ввод войск и
-            Афганистан до войны. Без оправданий и агитации - сухо и ясно.
+            Международная обстановка, решения руководства СССР, ввод войск и
+            Афганистан до войны.
           </p>
           <div class="context-body">
             <figure class="context-figure right">
@@ -548,7 +534,17 @@
             </article>
             <article class="hardware-card">
               <div class="hardware-media">
-                <img src="weapon/т-54.png" alt="Т-54" loading="lazy" />
+                <button
+                  class="hardware-media-btn"
+                  type="button"
+                  data-model-open="t54-vitrine"
+                  aria-haspopup="dialog"
+                  aria-controls="t54-vitrine"
+                  aria-label="Открыть 3D витрину танка Т-54"
+                >
+                  <img src="weapon/т-54.png" alt="Т-54" loading="lazy" />
+                  <span class="hardware-media-label">3D</span>
+                </button>
               </div>
               <div class="hardware-body">
                 <div class="hardware-title">Т-54</div>
@@ -578,7 +574,17 @@
             </article>
             <article class="hardware-card">
               <div class="hardware-media">
-                <img src="weapon/ми-24.png" alt="Ми-24" loading="lazy" />
+                <button
+                  class="hardware-media-btn"
+                  type="button"
+                  data-model-open="mi24-vitrine"
+                  aria-haspopup="dialog"
+                  aria-controls="mi24-vitrine"
+                  aria-label="Открыть 3D витрину вертолета Ми-24"
+                >
+                  <img src="weapon/ми-24.png" alt="Ми-24" loading="lazy" />
+                  <span class="hardware-media-label">3D</span>
+                </button>
               </div>
               <div class="hardware-body">
                 <div class="hardware-title">Ми-24</div>
@@ -635,7 +641,7 @@
             </div>
           </div>
           <p class="section-subtitle">
-            Люди, чьи судьбы навсегда связаны с Афганской войной. Имена, лица и краткие истории подвига. Список будет постепенно пополняться.a
+            Люди, чьи судьбы навсегда связаны с Афганской войной. Имена, лица и краткие истории подвига. Список будет постепенно пополняться.
           </p>
           <div class="slider" aria-label="Список карточек памяти">
             <div class="slider-track">
@@ -772,11 +778,72 @@
                 </p>
               </article>
             </div>
-          </div>
-          <p class="footnote">Автоматическая прокрутка включена</p>
+        
         </div>
       </section>
     </main>
+
+    <div class="model-modal" id="t54-vitrine" role="dialog" aria-modal="true" aria-labelledby="t54-title" aria-hidden="true">
+      <div class="model-backdrop" data-model-close></div>
+      <div class="model-card" role="document">
+        <div class="model-head">
+          <div>
+            <div class="model-kicker">3D витрина</div>
+            <h3 class="model-title" id="t54-title">Т-54</h3>
+            <p class="model-subtitle">Поверните модель, чтобы рассмотреть детали.</p>
+          </div>
+          <button class="model-close" type="button" data-model-close aria-label="Закрыть 3D витрину">×</button>
+        </div>
+        <div class="model-stage">
+          <model-viewer
+            src="weapon/t-54.glb"
+            poster="weapon/т-54.png"
+            alt="3D модель танка Т-54"
+            camera-controls
+            auto-rotate
+            camera-orbit="50deg 80deg 12.4m"
+            min-camera-orbit="50deg 55deg 2.2m"
+            camera-target="0m 0.7m 0m"
+            shadow-intensity="12"
+            exposure="0.9"
+            environment-image="neutral"
+            interaction-prompt="none"
+          ></model-viewer>
+        </div>
+        <div class="model-hint">Поворот: мышь/палец · Приближение: колесо/жест</div>
+      </div>
+    </div>
+
+    <div class="model-modal" id="mi24-vitrine" role="dialog" aria-modal="true" aria-labelledby="mi24-title" aria-hidden="true">
+      <div class="model-backdrop" data-model-close></div>
+      <div class="model-card" role="document">
+        <div class="model-head">
+          <div>
+            <div class="model-kicker">3D витрина</div>
+            <h3 class="model-title" id="mi24-title">Ми-24</h3>
+            <p class="model-subtitle">Поверните модель, чтобы рассмотреть детали.</p>
+          </div>
+          <button class="model-close" type="button" data-model-close aria-label="Закрыть 3D витрину">×</button>
+        </div>
+        <div class="model-stage">
+          <model-viewer
+            src="weapon/mil_mi-24v_hind.glb"
+            poster="weapon/ми-24.png"
+            alt="3D модель вертолета Ми-24"
+            camera-controls
+            auto-rotate
+            camera-orbit="50deg 80deg 20.4m"
+            min-camera-orbit="10deg 55deg 2.2m"
+            camera-target="0m 0.7m 0m"
+            shadow-intensity="12"
+            exposure="0.9"
+            environment-image="neutral"
+            interaction-prompt="none"
+          ></model-viewer>
+        </div>
+        <div class="model-hint">Поворот: мышь/палец · Приближение: колесо/жест</div>
+      </div>
+    </div>
 
     <footer>
       <div class="container">
@@ -784,6 +851,7 @@
       </div>
     </footer>
 
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
