@@ -1,5 +1,6 @@
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealElements = document.querySelectorAll("[data-reveal]");
+const statNumbers = document.querySelectorAll(".stat-number");
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -12,6 +13,61 @@ const revealObserver = new IntersectionObserver(
 );
 
 revealElements.forEach((el) => revealObserver.observe(el));
+
+const formatNumber = (value) => value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+const animateNumber = (element) => {
+  const target = Number(element.dataset.target);
+  if (!Number.isFinite(target)) {
+    return;
+  }
+  const duration = 1200;
+  const start = performance.now();
+  const tick = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(target * eased);
+    element.textContent = formatNumber(current);
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    } else {
+      element.dataset.animated = "true";
+    }
+  };
+  requestAnimationFrame(tick);
+};
+
+if (statNumbers.length > 0) {
+  if (reduceMotion) {
+    statNumbers.forEach((el) => {
+      const target = Number(el.dataset.target);
+      if (Number.isFinite(target)) {
+        el.textContent = formatNumber(target);
+        el.dataset.animated = "true";
+      }
+    });
+  } else {
+    const statsObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          const el = entry.target;
+          if (el.dataset.animated === "true") {
+            observer.unobserve(el);
+            return;
+          }
+          animateNumber(el);
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    statNumbers.forEach((el) => statsObserver.observe(el));
+  }
+}
 
 const slider = document.querySelector(".slider");
 const track = document.querySelector(".slider-track");
@@ -254,4 +310,37 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && activeModal) {
     closeModal();
   }
+});
+
+const videoCards = document.querySelectorAll(".video-card[data-video-url]");
+
+videoCards.forEach((card) => {
+  const url = card.getAttribute("data-video-url");
+  if (!url) {
+    return;
+  }
+  const titleEl = card.querySelector(".video-title");
+  const authorEl = card.querySelector(".video-author");
+  const thumbEl = card.querySelector(".video-thumb img");
+
+  fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`)
+    .then((response) => (response.ok ? response.json() : null))
+    .then((data) => {
+      if (!data) {
+        return;
+      }
+      if (titleEl && data.title) {
+        titleEl.textContent = data.title;
+      }
+      if (authorEl && data.author_name) {
+        authorEl.textContent = `Автор: ${data.author_name}`;
+      }
+      if (thumbEl && data.thumbnail_url) {
+        thumbEl.src = data.thumbnail_url;
+        if (data.title) {
+          thumbEl.alt = `Превью: ${data.title}`;
+        }
+      }
+    })
+    .catch(() => {});
 });

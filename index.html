@@ -270,25 +270,25 @@
             <div class="numbers-strip">
               <article class="stat-frame" data-reveal style="--delay: 0.1s;">
                 <div class="stat-tag"></div>
-                <div class="stat-value">~30 000</div>
+                <div class="stat-value">~<span class="stat-number" data-target="30000">0</span></div>
                 <div class="stat-label">Белорусов прошли службу в Афганистане</div>
                 <div class="stat-note">Оценка по архивным данным</div>
               </article>
               <article class="stat-frame" data-reveal style="--delay: 0.2s;">
                 <div class="stat-tag"></div>
-                <div class="stat-value">~770–790</div>
+                <div class="stat-value">~<span class="stat-number" data-target="770">0</span>–790</div>
                 <div class="stat-label">Погибли, ~12 числятся пропавшими без вести</div>
                 <div class="stat-note">Потери среди уроженцев БССР</div>
               </article>
               <article class="stat-frame" data-reveal style="--delay: 0.3s;">
                 <div class="stat-tag"></div>
-                <div class="stat-value">~1 500</div>
+                <div class="stat-value">~<span class="stat-number" data-target="1500">0</span></div>
                 <div class="stat-label">Раненые, ~700 признаны инвалидами</div>
                 <div class="stat-note">Долгосрочные последствия</div>
               </article>
               <article class="stat-frame" data-reveal style="--delay: 0.4s;">
                 <div class="stat-tag"></div>
-                <div class="stat-value">~26 000</div>
+                <div class="stat-value">~<span class="stat-number" data-target="26000">0</span></div>
                 <div class="stat-label">Ветеранов живут в Беларуси сегодня</div>
                 <div class="stat-note">Оценка по данным ветеранских организаций</div>
               </article>
@@ -405,7 +405,7 @@
                   </div>
                   <div class="honor-row">
                     <span>Место рождения</span>
-                    <strong>деревня Первый Май[бел.] Пуховичский район Минской области</strong>
+                    <strong>деревня Первый Май;Пуховичский район Минской области</strong>
                   </div>
                   <div class="honor-row">
                     <span>Дата указа</span>
@@ -449,7 +449,7 @@
                   </div>
                   <div class="honor-row">
                     <span>Место рождения</span>
-                    <strong>деревня Казимирово Полоцкий район Витебской области</strong>
+                    <strong>деревня Казимирово; Полоцкий район Витебской области</strong>
                   </div>
                   <div class="honor-row">
                     <span>Дата указа</span>
@@ -781,6 +781,91 @@
         
         </div>
       </section>
+
+      <section class="video-gallery" id="videos">
+        <div class="container" data-reveal>
+          <h2 class="section-title">Видеогалерея</h2>
+          <div class="video-grid">
+            <article class="video-card" data-video-url="https://www.youtube.com/watch?v=QSxr32ITdtQ">
+              <a
+                class="video-thumb"
+                href="https://www.youtube.com/watch?v=QSxr32ITdtQ"
+                target="_blank"
+                rel="noopener"
+                aria-label="Смотреть видео на YouTube"
+              >
+                <img src="https://i.ytimg.com/vi/QSxr32ITdtQ/hqdefault.jpg" alt="Превью видео" loading="lazy" />
+                <span class="video-play" aria-hidden="true">▶</span>
+              </a>
+              <div class="video-meta">
+                <div class="video-title">Загрузка названия...</div>
+                <div class="video-author">Автор: YouTube</div>
+              </div>
+            </article>
+            <article class="video-card" data-video-url="https://www.youtube.com/watch?v=Rg3zkMa9_-k">
+              <a
+                class="video-thumb"
+                href="https://www.youtube.com/watch?v=Rg3zkMa9_-k"
+                target="_blank"
+                rel="noopener"
+                aria-label="Смотреть видео на YouTube"
+              >
+                <img src="https://i.ytimg.com/vi/Rg3zkMa9_-k/hqdefault.jpg" alt="Превью видео" loading="lazy" />
+                <span class="video-play" aria-hidden="true">▶</span>
+              </a>
+              <div class="video-meta">
+                <div class="video-title">Загрузка названия...</div>
+                <div class="video-author">Автор: YouTube</div>
+              </div>
+            </article>
+            <article class="video-card" data-video-url="https://www.youtube.com/watch?v=VjRz85wbFzM">
+              <a
+                class="video-thumb"
+                href="https://www.youtube.com/watch?v=VjRz85wbFzM"
+                target="_blank"
+                rel="noopener"
+                aria-label="Смотреть видео на YouTube"
+              >
+                <img src="https://i.ytimg.com/vi/VjRz85wbFzM/hqdefault.jpg" alt="Превью видео" loading="lazy" />
+                <span class="video-play" aria-hidden="true">▶</span>
+              </a>
+              <div class="video-meta">
+                <div class="video-title">Загрузка названия...</div>
+                <div class="video-author">Автор: YouTube</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="other-projects" id="projects">
+        <div class="container" data-reveal>
+          <h2 class="section-title">Другие наши проекты</h2>
+          <p class="section-subtitle">Здесь представлены исследования и образовательные инициативы нашей команды</p>
+          <div class="projects-grid">
+            <article class="project-card">
+              <a class="project-thumb" href="https://11wwbel.netlify.app/" target="_blank" rel="noopener">
+                <img src="1mw.png" alt="Превью проекта «Первая мировая война на землях Беларусь»" loading="lazy" />
+                <span class="project-tag">Проект 1</span>
+              </a>
+              <div class="project-meta">
+                <div class="project-title">Первая мировая война на землях Беларуси</div>
+                <div class="project-link">11wwbel.netlify.app</div>
+              </div>
+            </article>
+            <article class="project-card">
+              <a class="project-thumb" href="https://wmp.by/" target="_blank" rel="noopener">
+                <img src="wpk.png" alt="Превью проекта «Официальный сайт ВПК «Вымпел»" loading="lazy" />
+                <span class="project-tag">Проект 2</span>
+              </a>
+              <div class="project-meta">
+                <div class="project-title">Официальный сайт ВПК «Вымпел»</div>
+                <div class="project-link">wmp.by</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
     </main>
 
     <div class="model-modal" id="t54-vitrine" role="dialog" aria-modal="true" aria-labelledby="t54-title" aria-hidden="true">
@@ -847,7 +932,7 @@
 
     <footer>
       <div class="container">
-        Помним погибших. Чтим ветеранов. Сохраняем память о белорусских солдатах в Афганистане.
+        Проект для конкурса "ТехноИнтеллект". Урицкая средняя школа. 2026 &copy;
       </div>
     </footer>
 
