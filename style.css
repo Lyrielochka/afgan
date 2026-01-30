@@ -403,6 +403,37 @@
         display: inline-block;
       }
 
+      .section-title-row {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin: 0 0 14px;
+      }
+
+      .section-title-row .section-title {
+        margin: 0;
+      }
+
+      .source-link {
+        font-family: "Oswald", "Arial Narrow", sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(242, 232, 212, 0.28);
+        background: rgba(12, 9, 7, 0.45);
+        color: var(--ink);
+        transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      }
+
+      .source-link:hover {
+        transform: translateY(-1px);
+        border-color: rgba(226, 80, 63, 0.8);
+        color: var(--accent-bright);
+      }
+
       .section-title::after {
         content: "";
         position: absolute;
@@ -1452,6 +1483,11 @@
         justify-content: space-between;
         gap: 20px;
         flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+
+      .memorial-head .section-title-row {
+        margin: 0;
       }
 
       .memorial-search input {
@@ -1481,6 +1517,17 @@
       .memorial .section-subtitle,
       .memorial .footnote {
         color: var(--mem-ink);
+      }
+
+      .memorial .source-link {
+        border-color: rgba(242, 232, 212, 0.35);
+        background: rgba(12, 9, 7, 0.6);
+        color: var(--mem-ink);
+      }
+
+      .memorial .source-link:hover {
+        color: #f8ddd6;
+        border-color: rgba(226, 80, 63, 0.8);
       }
 
       .memorial .section-title::after {
